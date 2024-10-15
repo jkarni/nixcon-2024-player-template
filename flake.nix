@@ -29,14 +29,14 @@
           ({ pkgs, ... }: {
             playerConfig = {
               # Your github user:
-              githubLogin = "GITHUB_USER";
+              githubLogin = "jkarni";
               # You only need to change this if you changed the forked repo name.
               githubRepo = "nixcon-2024-player-template";
               # You only need to change this if you changed the forked repo name.
               webserver = pkgs.hello;
               # If you want to log in to your deployed server, put your SSH key
               # here:
-              sshKey = "<YOUR_PUBLIC_SSH_KEY>";
+              sshKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIVpNqdbM7uE1xkKoXztoaAtKtDHoqHS3DrzxYKsDgxa jkarni@garnix.io";
             };
           })
         ];
