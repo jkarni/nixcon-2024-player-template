@@ -26,12 +26,19 @@
         modules = [
           garnix-lib.nixosModules.garnix
           ./module.nix
-          {
+          ({ pkgs, ... }: {
             playerConfig = {
-              webserver = (import nixpkgs { inherit system; }).hello;
+              # Your github user:
+              githubLogin = "GITHUB_USER";
+              # You only need to change this if you changed the forked repo name.
+              githubRepo = "nixcon-2024-player-template";
+              # You only need to change this if you changed the forked repo name.
+              webserver = pkgs.hello;
+              # If you want to log in to your deployed server, put your SSH key
+              # here:
               sshKey = "<YOUR_PUBLIC_SSH_KEY>";
             };
-          }
+          })
         ];
       };
 

@@ -13,17 +13,16 @@ in
     githubLogin = lib.mkOption {
       type = lib.types.str;
       description = "The github user/organization to use for the player";
-      default = "garnix-io";
     };
 
     githubRepo = lib.mkOption {
       type = lib.types.str;
       description = "The github repository to use for the player";
-      default = "nixcon-2024-player-template";
     };
 
     sshKey = lib.mkOption {
-      type = lib.types.str;
+      type = lib.types.nullOr lib.types.str;
+      default = null;
       description = "The ssh public key to add to the `me` authorized keys";
     };
 
@@ -71,7 +70,10 @@ in
         "wheel"
         "systemd-journal"
       ];
-      openssh.authorizedKeys.keys = [ cfg.sshKey ];
+      openssh.authorizedKeys.keys =
+        if cfg.sshKey == null
+        then []
+        else [ cfg.sshKey ];
     };
 
     garnix.server.enable = true;
