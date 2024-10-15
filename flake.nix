@@ -32,7 +32,7 @@
               githubLogin = "GITHUB_USER";
               # You only need to change this if you changed the forked repo name.
               githubRepo = "nixcon-2024-player-template";
-              # You only need to change this if you changed the forked repo name.
+              # The nix derivation that will be used as the server process. It should open a webserver on port 8080.
               webserver = pkgs.hello;
               # If you want to log in to your deployed server, put your SSH key
               # here:
