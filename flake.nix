@@ -3,6 +3,8 @@
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+  inputs.flake-utils.url = "github:numtide/flake-utils";
+
   inputs.garnix-lib = {
     url = "github:garnix-io/garnix-lib";
     inputs = {
@@ -10,16 +12,19 @@
     };
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      garnix-lib,
-      ...
-    }:
+  outputs = { self, nixpkgs, garnix-lib, flake-utils }:
     let
       system = "x86_64-linux";
     in
+    (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
+      let pkgs = import nixpkgs { inherit system; };
+      in rec {
+        packages = {
+          webserver = pkgs.hello;
+          default = packages.webserver;
+        };
+      }))
+    //
     {
       packages.x86_64-linux.default =
        let pkgs = nixpkgs.legacyPackages.x86_64-linux;
