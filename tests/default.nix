@@ -12,7 +12,7 @@
       {
         imports = [
           flake.inputs.garnix-lib.nixosModules.garnix
-          ../nixcon-garnix-player-module.nix
+          flake.nixosModules.nixcon-garnix-player-module
         ];
 
         garnix.server.isVM = true;

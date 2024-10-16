@@ -47,7 +47,7 @@
         inherit system;
         modules = [
           garnix-lib.nixosModules.garnix
-          ./nixcon-garnix-player-module.nix
+          self.nixosModules.nixcon-garnix-player-module
           ({ pkgs, ... }: {
             playerConfig = {
               # Your github user:
@@ -63,6 +63,9 @@
           })
         ];
       };
+
+      nixosModules.nixcon-garnix-player-module = ./nixcon-garnix-player-module.nix;
+      nixosModules.default = self.nixosModules.nixcon-garnix-player-module;
 
       # Remove before starting the workshop - this is just for development
       checks = import ./checks.nix { inherit nixpkgs self; };
