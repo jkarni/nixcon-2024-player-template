@@ -23,6 +23,20 @@
           webserver = pkgs.hello;
           default = packages.webserver;
         };
+        apps.default = {
+          type = "app";
+          program = pkgs.lib.getExe (
+            pkgs.writeShellApplication {
+              name = "start-webserver";
+              runtimeEnv = {
+                PORT = "8080";
+              };
+              text = ''
+                ${pkgs.lib.getExe packages.webserver}
+              '';
+            }
+          );
+        };
       }))
     //
     {
