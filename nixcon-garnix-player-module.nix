@@ -40,7 +40,7 @@ in
 
   config = {
     systemd.services.webserver = {
-      after = [ "network.target" ];
+      after = [ "network-online.target" ];
       wantedBy = [ "multi-user.target" ];
       description = "The player webserver service";
       script = lib.getExe cfg.webserver;
