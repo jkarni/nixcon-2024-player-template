@@ -10,7 +10,7 @@ import System.Environment
 main :: IO ()
 main = do
   port <- getEnv "PORT"
-  putStrLn "hihihihihi"
+  putStrLn "hihihihi"
   run (read port) (serve api server)
 
 server :: Server API
